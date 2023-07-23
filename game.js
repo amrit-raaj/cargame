@@ -16,43 +16,7 @@ let keys = {
   ArrowRight: false,
 };
 
-let touchControls = {
-  start: { x: 0, y: 0 },
-  end: { x: 0, y: 0 },
-};
 
-document.addEventListener("touchstart", handleTouchStart);
-document.addEventListener("touchmove", handleTouchMove);
-document.addEventListener("touchend", handleTouchEnd);
-
-function handleTouchStart(event) {
-  event.preventDefault();
-  touchControls.start.x = event.touches[0].clientX;
-  touchControls.start.y = event.touches[0].clientY;
-}
-
-function handleTouchMove(event) {
-  event.preventDefault();
-  touchControls.end.x = event.touches[0].clientX;
-  touchControls.end.y = event.touches[0].clientY;
-}
-
-function handleTouchEnd(event) {
-  event.preventDefault();
-  const deltaX = touchControls.end.x - touchControls.start.x;
-  const deltaY = touchControls.end.y - touchControls.start.y;
-  
-  // Determine the primary direction of the swipe
-  if (Math.abs(deltaX) > Math.abs(deltaY)) {
-    // Horizontal swipe
-    keys.ArrowLeft = deltaX < 0;
-    keys.ArrowRight = deltaX > 0;
-  } else {
-    // Vertical swipe
-    keys.ArrowUp = deltaY < 0;
-    keys.ArrowDown = deltaY > 0;
-  }
-}
 let player = {
   speed: 5,
   score: 0,
